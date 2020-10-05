@@ -25,3 +25,7 @@
 ## npm run pack (folder)
 
 ## learn to open new window on button press in html.
+
+https://github.com/electron/electron/blob/v10.1.3/docs/tutorial/application-architecture.md
+https://warframe.market/items/akbolto_prime_barrel
+https://docs.google.com/document/d/1121cjBNN4BeZdMBGil6Qbuqse-sWpEXPpitQH5fb_Fo/edit#heading=h.w1oepndbdsgt
