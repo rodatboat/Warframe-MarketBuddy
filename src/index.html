@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Shopping List</title>
+    <link rel="stylesheet" href="index.css">
+  </head>
+  <body>
+    <h1>Shopping List</h1>
+    <ul></ul>
+    
+    <script>
+      const electron = require('electron');
+      const {ipcRenderer} = electron;
+
+      let ul = document.querySelector('ul');
+
+      // Add item.
+      ipcRenderer.on('item:add', (e, item)=>{
+        console.log(item);
+        const li = document.createElement('li');
+        const itemText = document.createTextNode(item);
+
+        li.appendChild(itemText);
+        ul.appendChild(li);
+      });
+
+      // Clear items.
+      ipcRenderer.on('item:clear', (e)=>{
+        ul.innerHTML = '';
+      });
+
+      // Remove item.
+      ul.addEventListener('dblclick', (e)=>{
+        e.target.remove();
+        if(ul.children.length == 0){
+          ul.className = '';
+        }
+      });
+    </script>
+  </body>
+</html>
