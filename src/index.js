@@ -95,7 +95,7 @@ app.on('activate', () => {
 });
 
 // Catch item:add
-ipcMain.on('item:add', (e, item) => {
+ipcMain.handle('item:add', (e, item) => {
   //console.log(e);
   //console.log(item);
   mainWindow.webContents.send('item:add', item);
