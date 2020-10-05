@@ -25,7 +25,7 @@
 
         const item = document.querySelector('#item').value;
 
-        ipcRenderer.send('item:add', item);
+        ipcRenderer.invoke('item:add', item);
       }
   </script>
 </body>
