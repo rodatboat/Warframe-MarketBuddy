@@ -29,6 +29,11 @@ const createWindow = () => {
   // Load html into window.
   mainWindow.loadFile(path.join(__dirname, 'index.html'));
 
+  // // Show once ready
+  // mainWindow.once('ready-to-show', () => {
+  //   mainWindow.show();
+  // });
+
 
   // Quit other windows when app closes.
   mainWindow.on('closed', () => {
@@ -49,6 +54,8 @@ const createWindow = () => {
 
   // Sets menu for window.
   mainWindow.setMenu(mainMenu);
+
+  
 };
 
 // Start the application when ready.
