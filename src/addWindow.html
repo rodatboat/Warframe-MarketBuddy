@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <title>Add Shopping Item</title>
+
 </head>
 <body>
   <div class="container">
@@ -14,19 +15,7 @@
       </form>
   </div>
   <script>
-      const electron = require('electron');
-      const { ipcRenderer } = electron;
-
-      const form = document.querySelector('form');
-      form.addEventListener('submit', submitForm);
-
-      function submitForm(e){
-        e.preventDefault();
-
-        const item = document.querySelector('#item').value;
-
-        ipcRenderer.invoke('item:add', item);
-      }
+    require('./renderAddWindow.js')
   </script>
 </body>
 </html>
