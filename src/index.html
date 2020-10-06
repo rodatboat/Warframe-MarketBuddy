@@ -1,42 +1,32 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="UTF-8">
-    <title>Shopping List</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
   </head>
   <body>
-    <h1>Shopping List</h1>
-    <ul></ul>
-    
-    <script>
-      const electron = require('electron');
-      const {ipcRenderer} = electron;
-
-      let ul = document.querySelector('ul');
-
-      // Add item.
-      ipcRenderer.on('item:add', (e, item)=>{
-        console.log(item);
-        const li = document.createElement('li');
-        const itemText = document.createTextNode(item);
-
-        li.appendChild(itemText);
-        ul.appendChild(li);
-      });
-
-      // Clear items.
-      ipcRenderer.on('item:clear', (e)=>{
-        ul.innerHTML = '';
-      });
-
-      // Remove item.
-      ul.addEventListener('dblclick', (e)=>{
-        e.target.remove();
-        if(ul.children.length == 0){
-          ul.className = '';
-        }
-      });
-    </script>
+  <section class="section">
+    <div class="container">
+      <h1 class="title has-text-centered">
+        Warframe MarketBuddy
+      </h1>
+      <p class="subtitle has-text-centered is-size-7">
+        created by rodatboat
+      </p>
+      <div class="columns is-centered">
+      <div class="column is-half">
+        
+      <form>
+        <input class="input is-primary is-normal" type="text" id="item" autofocus placeholder="Search for an item's price...">
+    </form>
+  </div>
+</div>
+    </div>
+  </section>
+  <script>
+    require('./render');
+  </script>
   </body>
 </html>
