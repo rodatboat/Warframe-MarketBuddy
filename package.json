@@ -12,6 +12,7 @@
   "author": "Ronaldo Suarez",
   "license": "MIT",
   "dependencies": {
+    "axios": "^0.20.0",
     "v8-compile-cache": "^2.1.1"
   },
   "devDependencies": {

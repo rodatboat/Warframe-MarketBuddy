@@ -5,87 +5,42 @@ const path = require('path');
 require('v8-compile-cache');
 
 
-// if (require('electron-squirrel-startup')) {
-//   app.quit();
-// }
-
 process.env.NODE_ENV = 'production';
 
 let mainWindow;
-let addWindow;
 
-// Create window template.
 const createWindow = () => {
-
-  // Window settings.
   mainWindow = new BrowserWindow({
-    width: 800,
+    width: 450,
     height: 600,
+    minWidth: 450,
+    minHeight: 300,
+    maxWidth: 450,
+    maxHeight: 850,
     webPreferences:{
       nodeIntegration: true
     }
   });
 
-  // Load html into window.
   mainWindow.loadFile(path.join(__dirname, 'index.html'));
 
-  // // Show once ready
-  // mainWindow.once('ready-to-show', () => {
-  //   mainWindow.show();
-  // });
-
-
-  // Quit other windows when app closes.
   mainWindow.on('closed', () => {
     app.quit();
   });
 
-  //Opens debugger on app.
-  //mainWindow.webContents.openDevTools();
+  //const mainMenu = Menu.buildFromTemplate(mainMenuTemplate);
 
-  // Building and setting the custom menu.
-  const mainMenu = Menu.buildFromTemplate(mainMenuTemplate);
+  mainWindow.setTitle("Warframe MarketBuddy");
 
-  // Setting Title
-  mainWindow.setTitle("Shopping List");
-  
-  // Sets menu for entire app.
-  //Menu.setApplicationMenu(mainMenu);
+  //mainWindow.setMenu(mainMenu);
 
-  // Sets menu for window.
-  mainWindow.setMenu(mainMenu);
-
-  
-};
-
-// Start the application when ready.
-app.on('ready', createWindow);
-
-// Handle create add window.
-const createAddWindow = () => {
-  // Window settings.
-  addWindow = new BrowserWindow({
-    width: 300,
-    height: 200,
-    webPreferences:{
-      nodeIntegration: true
-    }
-  });
-
-  // Load html into window.
-  addWindow.loadFile(path.join(__dirname, 'addWindow.html'));
-
-  // Setting Title
-  addWindow.setTitle("Add Shopping Item");
-
+  // Opens debugger on app.
+  mainWindow.webContents.openDevTools();
   // Remove menu.
-  addWindow.setMenu(null);
-
-  // Garbage collection
-  // addWindow.on('close',()=>{
-  //   addWindow = null;
-  // });
+  mainWindow.setMenu(null);
 };
+
+app.on('ready', createWindow);
 
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
@@ -93,9 +48,7 @@ app.on('window-all-closed', () => {
   }
 });
 
-
 app.on('activate', () => {
-
   if (BrowserWindow.getAllWindows().length === 0) {
     createWindow();
   }
@@ -103,10 +56,7 @@ app.on('activate', () => {
 
 // Catch item:add
 ipcMain.handle('item:add', (e, item) => {
-  //console.log(e);
-  //console.log(item);
   mainWindow.webContents.send('item:add', item);
-  addWindow.close();
 });
 
 // Create menu template.
