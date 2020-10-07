@@ -43,7 +43,8 @@ const createWindow = () => {
   //mainWindow.setMenu(mainMenu);
 
   // Opens debugger on app.
-  mainWindow.webContents.openDevTools();
+  //mainWindow.webContents.openDevTools();
+  
   // Remove menu.
   mainWindow.setMenu(null);
 };

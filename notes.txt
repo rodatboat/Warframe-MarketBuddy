@@ -41,7 +41,8 @@ https://www.w3schools.com/howto/howto_js_autocomplete.asp
 
 ## add clipboard functionality. //
 ## auto-activate sellers tab.
-## custom title bar
-## custom icon
+## custom title bar.
+## custom icon.
+## open hyper-link in browser not app.
 
 ## later possible watch list? that updates every few minutes?
