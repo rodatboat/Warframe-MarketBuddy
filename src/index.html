@@ -1,32 +1,125 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="index.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
-  </head>
-  <body>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../css/mystyles.css">
+  <script defer src="https://use.fontawesome.com/releases/v5.14.0/js/all.js"></script>
+</head>
+
+<body>
   <section class="section">
     <div class="container">
-      <h1 class="title has-text-centered">
+      <h1 class="title has-text-centered" id="tester">
         Warframe MarketBuddy
       </h1>
       <p class="subtitle has-text-centered is-size-7">
-        created by rodatboat
+        created by <a class="has-text-primary" href="https://github.com/rodatboat">Ronaldo Suarez</a>
       </p>
       <div class="columns is-centered">
-      <div class="column is-half">
-        
-      <form>
-        <input class="input is-primary is-normal" type="text" id="item" autofocus placeholder="Search for an item's price...">
-    </form>
+        <div class="column is-half">
+
+          <form id="itemSearch">
+            <input class="input is-primary is-normal" type="text" id="itemInput" name="itemSearch" autofocus
+              placeholder="Search for an item's price...">
+          </form>
+        </div>
+      </div>
+<!-- START --> 
+<div class="container">
+  <div class="tabs is-centered">
+    <ul>
+      <li><a>Sellers</a></li>
+      <li><a>Buyers</a></li>
+    </ul>
+  </div>
+  <div>
+    <!-- SELLER -->
+    <section class="tab-content">
+      <div class="columns">
+        <div class="column is-full" style="padding: 0 1.25rem 0 1.25rem;">
+          <div class="columns is-mobile">
+            <div class="column is-1 container">
+              
+            </div>
+            <div class="column is-half container">
+              <p class="bd-notification has-text-grey tab-info ">Seller</p>
+            </div>
+            <div class="column cost-column container">
+              <p class="bd-notification has-text-grey tab-info has-text-centered">Price</p>
+            </div>
+            <div class="column quantity-column container">
+              <p class="bd-notification has-text-grey tab-info has-text-centered">Qty.</p>
+            </div>
+            <div class="column quantity-column container">
+                <p class="has-text-grey tab-info">Copy</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="columns" id="items-sell-list">
+        <!-- ONE ITEM START -->
+        <!-- <div class="column is-full item box">
+          <div class="columns is-mobile">
+            <div class="column is-1 sellmarker-column container">
+              <p class="is-danger has-text-success">|</p>
+            </div>
+            <div class="column is-half playername-column container">
+              <p class="has-text-dark ">siinatra35</p>
+            </div>
+            <div class="column cost-column container">
+              <p class="has-text-primary has-text-centered">7</p>
+            </div>
+            <div class="column quantity-column container">
+              <p class="has-text-primary has-text-centered">3</p>
+            </div>
+            <div class="column quantity-column container">
+              <span class="icon has-text-info has-text-centered">
+                <i class="far fa-clipboard has-text-dark"></i>
+              </span>
+            </div>
+          </div>
+        </div> -->
+        <!-- ONE ITEM END -->
+
+      </div>
+    </section>
+    <!-- BUYER -->
+    <section class="tab-content">
+      <div class="columns">
+        <div class="column is-full" style="padding: 0 1.25rem 0 1.25rem;">
+          <div class="columns is-mobile">
+            <div class="column is-1 container">
+              
+            </div>
+            <div class="column is-half container">
+              <p class="bd-notification has-text-grey tab-info">Buyer</p>
+            </div>
+            <div class="column cost-column container">
+              <p class="bd-notification has-text-grey tab-info has-text-centered">Price</p>
+            </div>
+            <div class="column quantity-column container">
+              <p class="bd-notification has-text-grey tab-info has-text-centered">Qty.</p>
+            </div>
+            <div class="column quantity-column container">
+                <p class="has-text-grey tab-info">Copy</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="columns" id="items-buy-list">
+
+      </div>
+    </section>
   </div>
 </div>
+<!-- END --> 
     </div>
   </section>
   <script>
     require('./render');
   </script>
-  </body>
+</body>
+
 </html>

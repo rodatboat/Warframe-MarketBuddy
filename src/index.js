@@ -2,6 +2,7 @@ const electron = require('electron');
 const { app, BrowserWindow, Menu, ipcMain } = electron;
 const url = require('url');
 const path = require('path');
+const fetchData = require('./fetchData')
 require('v8-compile-cache');
 
 
@@ -12,12 +13,13 @@ let mainWindow;
 const createWindow = () => {
   mainWindow = new BrowserWindow({
     width: 450,
-    height: 600,
+    height: 850,
     minWidth: 450,
     minHeight: 300,
     maxWidth: 450,
     maxHeight: 850,
     webPreferences:{
+      worldSafeExecuteJavaScript: true,
       nodeIntegration: true
     }
   });
@@ -27,6 +29,10 @@ const createWindow = () => {
   mainWindow.on('closed', () => {
     app.quit();
   });
+
+  mainWindow.webContents.on('did-finish-load', function() {
+    mainWindow.show();
+});
 
   //const mainMenu = Menu.buildFromTemplate(mainMenuTemplate);
 
@@ -54,9 +60,20 @@ app.on('activate', () => {
   }
 });
 
-// Catch item:add
-ipcMain.handle('item:add', (e, item) => {
-  mainWindow.webContents.send('item:add', item);
+// Catch item:search
+ipcMain.handle('item:search', (e, item) => {
+  //const item = item.
+  fetchData.fetchItem(item).then((res)=>{
+    mainWindow.webContents.send('item:orders', res);
+  })
+  .catch(e=>{
+    if(e.response.status == '404'){
+      console.log(`Item ${item} not found...`);
+    } else {
+      console.log(`Error ${e.response.status} while making request...`);
+    }
+  })
+  //mainWindow.webContents.send('item:add', item);
 });
 
 // Create menu template.

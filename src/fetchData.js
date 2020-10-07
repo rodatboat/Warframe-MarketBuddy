@@ -1,7 +1,6 @@
 const axios = require('axios');
 
 async function fetchItem(itemName) {
-    let result;
     const axiosRequest = axios.create({
         baseURL:`https://api.warframe.market/v1/items/${(itemName.toLowerCase()).replace(/ /g, "_")}/orders`
     });
@@ -11,7 +10,8 @@ async function fetchItem(itemName) {
         return allOrders.map(({
             order_type,
             platinum,
-            user
+            user,
+            quantity
         }) => {
             let status = user.status;
             let playername = user.ingame_name
@@ -19,7 +19,8 @@ async function fetchItem(itemName) {
                 order_type,
                 platinum,
                 status,
-                playername
+                playername,
+                quantity
             }
         });
     });
@@ -28,4 +29,27 @@ async function fetchItem(itemName) {
     });
 };
 
+async function fetchItemNames(){
+    const axiosRequest = axios.create({
+        baseURL:`https://api.warframe.market/v1/items`
+    });
+    axiosRequest.interceptors.response.use(res => {
+        let allOrders = res.data.payload.items;
+
+        return allOrders.map(({
+            item_name,
+            url_name,
+            thumb
+        }) => ({
+                item_name,
+                url_name,
+                thumb,
+        }));
+    });
+    return axiosRequest.get().then((res)=> {
+        return res;
+    });
+}
+
 exports.fetchItem = fetchItem;
+exports.fetchItemNames = fetchItemNames;
