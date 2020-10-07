@@ -166,14 +166,14 @@ function createElementFromHTML(htmlString) {
   return div.firstChild; 
 }
 
-function createItemElement(name, price, quantity){
+function createItemElement(name, price, quantity, item_name, order_type){
   let itemCode = (`<div class="column is-full item box mb-2 p-2">
   <div class="columns is-mobile">
     <div class="column is-1 sellmarker-column container">
       <p class="is-danger has-text-success">|</p>
     </div>
     <div class="column is-half playername-column container">
-      <p class="has-text-dark ">${name}</p>
+      <p class="has-text-dark" item-name="${item_name}" order-type="${order_type}">${name}</p>
     </div>
     <div class="column cost-column container">
       <p class="has-text-primary has-text-centered">${price}</p>
@@ -182,8 +182,8 @@ function createItemElement(name, price, quantity){
       <p class="has-text-primary has-text-centered">${quantity}</p>
     </div>
     <div class="column quantity-column container">
-      <span class="icon has-text-info has-text-centered">
-        <i class="far fa-clipboard has-text-dark"></i>
+      <span class="icon has-text-info has-text-centered" id="clipboard-icon">
+        <i class="far fa-clipboard has-text-dark" id="clipboard-icon"></i>
       </span>
     </div>
   </div>
@@ -210,17 +210,39 @@ let searchResults = (()=>{
       return b.platinum - a.platinum;
     });
 
-    console.log(sell_orders);
+    //console.log(sell_orders);
     
     let sellResultsContainer = document.getElementById('items-sell-list');
     let buyResultsContainer = document.getElementById('items-buy-list');
 
     sell_orders.forEach((order)=>{
-      sellResultsContainer.appendChild(createElementFromHTML(createItemElement(order.playername, order.platinum, order.quantity)));
+      sellResultsContainer.appendChild(createElementFromHTML(createItemElement(order.playername, order.platinum, order.quantity, order.item_name, order.order_type)));
     });
     buy_orders.forEach((order)=>{
-      buyResultsContainer.appendChild(createElementFromHTML(createItemElement(order.playername, order.platinum, order.quantity)));
+      buyResultsContainer.appendChild(createElementFromHTML(createItemElement(order.playername, order.platinum, order.quantity, order.item_name, order.order_type)));
     });
+
+    let copyClipboard = (()=>{
+      let clipIcon = document.getElementById('clipboard-icon');
+      clipIcon.addEventListener('click', ()=>{
+        let clipBoardData = clipIcon.parentNode.parentNode.getElementsByTagName('div');
+        let ordername = clipBoardData[1].children[0].innerHTML;
+        let itemname = clipBoardData[1].children[0].getAttribute("item-name").replace(/_/g, " ")).replace(/(^\w{1})|(\s{1}\w{1})/g, match => match.toUpperCase();
+        let itemprice = clipBoardData[2].children[0].innerHTML;
+        let ordertype = clipBoardData[1].children[0].getAttribute("order-type");
+        if(ordertype == 'sell'){
+          ordertype = 'buy';
+        } else {
+          ordertype = 'sell';
+        }
+
+        let text = `/w ${ordername} Hi! I want to ${ordertype}: ${itemname} for ${itemprice} platinum. (Warframe-MarketBuddy)`;
+
+        const blob = new Blob([text], { type: "text/plain" })
+        let data = [new ClipboardItem({ ["text/plain"]: blob })];
+        navigator.clipboard.write(data);
+      });
+    })();
 
   });
 })();
