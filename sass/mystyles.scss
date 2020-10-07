@@ -1,0 +1,65 @@
+$primaryBtn: rgb(56, 146, 142);
+$box-shadow: 0 0px 3px rgba(0,0,0,0.12), 0 0px 2px rgba(0,0,0,0.24);
+$tabs-link-active-border-bottom-color: hsl(171, 100%, 41%);
+$tabs-link-active-color: hsl(171, 100%, 41%);
+$tabs-link-hover-border-bottom-color: hsl(0, 0%, 48%);
+$tabs-link-hover-color: hsl(0, 0%, 48%);
+
+@import "../node_modules/bulma/bulma.sass";
+
+.box {
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+  margin-bottom: .5rem;
+}
+
+.autocomplete-items{
+  margin-top: -.1rem;
+  padding-top: .5rem;
+  border-bottom: 1px solid;
+  border-left: 1px solid;
+  border-right: 1px solid;
+  border-color: $primaryBtn;
+  background-color: white;
+  z-index: 99;
+  position: absolute;
+  width: 100%;
+}
+.autocomplete-items div {
+  position: relative;
+  padding: 7px 11px;
+}
+
+.tab-info {
+  font-size: .7em;
+}
+
+.box:hover {
+  box-shadow: 0 1px 6px rgba(0,0,0,0.16), 0 1px 6px rgba(0,0,0,0.23);
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+  
+  ::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .tab-content {
+    display: none;
+  }
+  
+  .tab-content.is-active {
+    display: block;
+  }
+  
+  input {
+    max-width: 20%;
+  }
+  
