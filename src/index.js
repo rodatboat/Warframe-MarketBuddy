@@ -15,14 +15,16 @@ const createWindow = () => {
     width: 450,
     height: 850,
     minWidth: 450,
-    minHeight: 300,
+    minHeight: 650,
     maxWidth: 450,
     maxHeight: 850,
+    icon: path.join(__dirname, '/img/mrktbuddy.ico'),
     webPreferences:{
       worldSafeExecuteJavaScript: true,
       nodeIntegration: true
     }
   });
+  console.log(path.join(__dirname, "/img/", 'marketbuddy blue icon.png'));
 
   mainWindow.loadFile(path.join(__dirname, 'index.html'));
 
