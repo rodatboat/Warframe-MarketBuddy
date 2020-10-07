@@ -39,7 +39,7 @@ https://www.w3schools.com/howto/howto_js_autocomplete.asp
 ## sass/mystyle.scss imports bulma styles
 ## npm run css-build creates css file
 
-## add clipboard functionality.
+## add clipboard functionality. //
 ## auto-activate sellers tab.
 ## custom title bar
 ## custom icon
