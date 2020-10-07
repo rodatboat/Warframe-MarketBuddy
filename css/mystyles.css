@@ -7706,6 +7706,9 @@ a.has-text-danger-dark:hover, a.has-text-danger-dark:focus {
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   margin-bottom: .5rem; }
 
+#clipboard-icon {
+  cursor: pointer; }
+
 .autocomplete-items {
   margin-top: -.1rem;
   padding-top: .5rem;

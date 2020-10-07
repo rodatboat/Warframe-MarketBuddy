@@ -15,12 +15,14 @@ async function fetchItem(itemName) {
         }) => {
             let status = user.status;
             let playername = user.ingame_name
+            let item_name = (itemName.toLowerCase()).replace(/ /g, "_");
             return {
                 order_type,
                 platinum,
                 status,
                 playername,
-                quantity
+                quantity,
+                item_name
             }
         });
     });
