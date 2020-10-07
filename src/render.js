@@ -227,7 +227,7 @@ let searchResults = (()=>{
       clipIcon.addEventListener('click', ()=>{
         let clipBoardData = clipIcon.parentNode.parentNode.getElementsByTagName('div');
         let ordername = clipBoardData[1].children[0].innerHTML;
-        let itemname = clipBoardData[1].children[0].getAttribute("item-name").replace(/_/g, " ")).replace(/(^\w{1})|(\s{1}\w{1})/g, match => match.toUpperCase();
+        let itemname = clipBoardData[1].children[0].getAttribute("item-name").replace(/_/g, " ").replace(/(^\w{1})|(\s{1}\w{1})/g, match => match.toUpperCase());
         let itemprice = clipBoardData[2].children[0].innerHTML;
         let ordertype = clipBoardData[1].children[0].getAttribute("order-type");
         if(ordertype == 'sell'){
@@ -238,7 +238,7 @@ let searchResults = (()=>{
 
         let text = `/w ${ordername} Hi! I want to ${ordertype}: ${itemname} for ${itemprice} platinum. (Warframe-MarketBuddy)`;
 
-        const blob = new Blob([text], { type: "text/plain" })
+        const blob = new Blob([text], { type: "text/plain" });
         let data = [new ClipboardItem({ ["text/plain"]: blob })];
         navigator.clipboard.write(data);
       });
