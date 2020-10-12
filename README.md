@@ -1,4 +1,4 @@
-## Warframe-items
+## Warframe MarketBuddy
 
 <img src="./src/img/warframebuddyicon.png" width="100">
 
@@ -28,7 +28,7 @@ npm install
 <br>
 
 ### Installation
-<img src="./example.png" width="100">
+<img src="./example.png">
 
 <br>
 
