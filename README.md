@@ -27,7 +27,7 @@ npm install
 
 <br>
 
-### Installation
+### UI
 <img src="./example.png">
 
 <br>
