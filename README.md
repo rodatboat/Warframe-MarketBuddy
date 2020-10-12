@@ -14,6 +14,8 @@ going through the process of looking it up a browser.
 Because it is much faster, the application does not have to load all the ads and extra information that market sites nowadays contain
 it is very straight forward, you get what you ask for.
 
+<br>
+
 Just like most trading sites I implemented a copy to clipboard functionality which allows for the user to click and instantly have
 a whisper message for the seller/buyer.
 
@@ -32,20 +34,13 @@ npm install
 
 <br>
 
-### Usage
-```js
-const Items = require('warframe-items')
-const items = new Items(options, ...items)
-```
-In this example, `items` is an Array with all items. The `...items` param
-allows you to add your own items before our gathered ones.
-
-<br>
-
-
 ### Usage and Testing
 To start and view the application `npm start`.
+<br>
+
 For packing the application `npm run pack`.
+<br>
+
 Creates and installer for the application `npm run dist`.
 
 <br>
