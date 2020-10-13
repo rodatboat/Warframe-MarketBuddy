@@ -1,5 +1,5 @@
 const electron = require('electron');
-const { app, BrowserWindow, Menu, ipcMain } = electron;
+const { app, BrowserWindow, Menu, ipcMain, shell } = electron;
 const url = require('url');
 const path = require('path');
 const fetchData = require('./fetchData')
@@ -18,6 +18,7 @@ const createWindow = () => {
     minHeight: 650,
     maxWidth: 450,
     maxHeight: 850,
+    frame: false,
     icon: path.join(__dirname, '/img/mrktbuddy.ico'),
     webPreferences:{
       worldSafeExecuteJavaScript: true,
@@ -43,7 +44,7 @@ const createWindow = () => {
   //mainWindow.setMenu(mainMenu);
 
   // Opens debugger on app.
-  //mainWindow.webContents.openDevTools();
+  mainWindow.webContents.openDevTools();
   
   // Remove menu.
   mainWindow.setMenu(null);
@@ -77,6 +78,18 @@ ipcMain.handle('item:search', (e, item) => {
     }
   })
   //mainWindow.webContents.send('item:add', item);
+});
+
+ipcMain.on('open:link', (e, link)=>{
+  shell.openExternal(link);
+});
+
+ipcMain.on('app:terminate', (e)=>{
+  app.quit();
+});
+
+ipcMain.on('app:minimize', (e)=>{
+  mainWindow.minimize();
 });
 
 // Create menu template.

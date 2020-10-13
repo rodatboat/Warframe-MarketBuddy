@@ -1,5 +1,5 @@
 const electron = require('electron');
-const { ipcRenderer } = electron;
+const { ipcRenderer, shell } = electron;
 const fetchData = require('./fetchData')
 
 
@@ -246,3 +246,23 @@ let searchResults = (()=>{
 
   });
 })();
+
+const githubProf = document.getElementById('github-link');
+githubProf.addEventListener('click', openGithub);
+
+function openGithub(){
+  ipcRenderer.send('open:link', 'https://github.com/rodatboat');
+}
+
+const titlebarClose = document.getElementById('titlebar-close');
+titlebarClose.addEventListener('click', terminateApp);
+function terminateApp(){
+  ipcRenderer.send('app:terminate');
+}
+
+const titlebarMini = document.getElementById('titlebar-minimize');
+titlebarMini.addEventListener('click', minimizeApp);
+function minimizeApp(){
+  ipcRenderer.send('app:minimize');
+}
+
